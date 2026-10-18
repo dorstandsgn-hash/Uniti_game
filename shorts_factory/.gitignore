@@ -1,0 +1,6 @@
+.venv/
+output/
+work/
+data/
+__pycache__/
+cookies.txt

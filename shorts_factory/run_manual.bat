@@ -1,0 +1,11 @@
+@echo off
+chcp 65001 >nul
+cd /d "%~dp0"
+set PYTHONUTF8=1
+echo Ручной режим: свой файл фильма + таймкоды.
+set /p FILE=Перетащите сюда файл фильма и нажмите Enter: 
+set /p START=Начало (например 01:12:30): 
+set /p END=Конец (например 01:13:20): 
+set /p MOVIE=Название фильма: 
+.venv\Scripts\python -m sf --file %FILE% --start %START% --end %END% --movie "%MOVIE%"
+pause
