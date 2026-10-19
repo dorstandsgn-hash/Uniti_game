@@ -31,9 +31,22 @@ if "%NEED_RESTART%"=="1" (
   exit /b
 )
 
+if exist .venv (
+  .venv\Scripts\python --version >nul 2>nul
+  if errorlevel 1 (
+    echo Старое окружение Python сломано - пересоздаю...
+    rmdir /s /q .venv
+  )
+)
 if not exist .venv (
   echo Создаю окружение Python...
   py -3 -m venv .venv
+)
+.venv\Scripts\python --version >nul 2>nul
+if errorlevel 1 (
+  echo ОШИБКА: не удалось создать окружение Python. Переустановите Python 3.12 и запустите install.bat снова.
+  pause
+  exit /b 1
 )
 echo Устанавливаю библиотеки (может занять 5-10 минут)...
 .venv\Scripts\python -m pip install --upgrade pip
