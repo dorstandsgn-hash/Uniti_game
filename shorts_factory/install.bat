@@ -63,8 +63,11 @@ if errorlevel 1 (
 echo Устанавливаю библиотеки NVIDIA для ускорения Whisper...
 .venv\Scripts\python -m pip install nvidia-cublas-cu12 "nvidia-cudnn-cu12==9.*"
 echo.
+echo Скачиваю модель распознавания речи (~3 ГБ, один раз, не закрывайте окно)...
+set HF_HUB_DISABLE_SYMLINKS_WARNING=1
+.venv\Scripts\python -c "from faster_whisper import download_model; download_model('large-v3')"
+echo.
 echo ==========================================
 echo   Готово! Запускайте run.bat
-echo   (при первом запуске скачается модель Whisper ~3 ГБ)
 echo ==========================================
 pause

@@ -36,6 +36,8 @@ def _load(cfg, device):
     global _model, _device
     from faster_whisper import WhisperModel
 
+    print("   Загружаю модель распознавания речи... (в первый раз она скачивается,\n"
+          "   это ~3 ГБ и 5–20 минут — не закрывайте окно)")
     if device == "cuda":
         _add_cuda_dlls()
         _model = WhisperModel(cfg.whisper_model, device="cuda", compute_type="float16")
