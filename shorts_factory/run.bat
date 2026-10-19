@@ -2,9 +2,9 @@
 chcp 65001 >nul
 cd /d "%~dp0"
 set PYTHONUTF8=1
-.venv\Scripts\python --version >nul 2>nul
+.venv\Scripts\python -c "import yaml, yt_dlp, faster_whisper" >nul 2>nul
 if errorlevel 1 (
-  echo Окружение Python не найдено или сломано. Сначала запустите install.bat
+  echo Библиотеки не установлены. Сначала запустите install.bat
   pause
   exit /b 1
 )
